@@ -1,11 +1,27 @@
 <h1 ng-bind="teacher.name"></h1>
 
-Score: {{teacher.score}}
 
-<select ng-change="addRating(score)" ng-model="score">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+<p>
+  Din bedømmelse:
+  <rating
+    style="outline: none;"
+    ng-click="addRating(score)"
+    ng-model="score"
+    max="maxScore"
+    readonly="isReadonly"
+    on-hover="hoveringOver(value)"
+    on-leave="overStar = null">
+  </rating>
+
+  <span ng-hide="overStar">{{score}}/{{maxScore}}</span>
+
+  <span
+    class="label"
+    ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"
+    ng-show="overStar && !isReadonly">
+      {{percent}}%
+    </span>
+</p>
+
+<p>Bedømmelse: {{teacher.score | number: 1}}/<span ng-bind="maxScore"></span> fra {{teacher.ratings_count}} brugere</p>
+

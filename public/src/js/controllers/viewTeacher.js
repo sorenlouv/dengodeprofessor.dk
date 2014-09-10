@@ -12,9 +12,22 @@ dengodeprofessor.controller('viewTeacher', [
     });
 
     $scope.addRating = function(score) {
+      $scope.overStar = null;
       ratingService.add(score, teacherId).success(function() {
       });
     };
 
+    // Current user's score of teacher
+    ratingService.getScore(teacherId).success(function(score) {
+      $scope.score = score;
+    });
+
+    $scope.maxScore = 10;
+    $scope.isReadonly = false;
+
+    $scope.hoveringOver = function(value) {
+      $scope.overStar = value;
+      $scope.percent = 100 * (value / $scope.maxScore);
+    };
 
 }]);

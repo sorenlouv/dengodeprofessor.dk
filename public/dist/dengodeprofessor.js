@@ -1,5 +1,5 @@
 var dengodeprofessor = angular.module('dengodeprofessor',
-    ['ngRoute', 'facebookDirective', 'safeApply']);
+    ['ngRoute', 'facebookDirective', 'safeApply', 'ui.bootstrap']);
 
 // Decorator for $q
 // Will add success() and error() methods to $q promises, to make them available like $http promises
@@ -186,10 +186,23 @@ dengodeprofessor.controller('viewTeacher', [
     });
 
     $scope.addRating = function(score) {
+      $scope.overStar = null;
       ratingService.add(score, teacherId).success(function() {
       });
     };
 
+    // Current user's score of teacher
+    ratingService.getScore(teacherId).success(function(score) {
+      $scope.score = score;
+    });
+
+    $scope.maxScore = 10;
+    $scope.isReadonly = false;
+
+    $scope.hoveringOver = function(value) {
+      $scope.overStar = value;
+      $scope.percent = 100 * (value / $scope.maxScore);
+    };
 
 }]);
 
@@ -289,6 +302,10 @@ dengodeprofessor.service('ratingService', [
         teacher_id: teacherId,
         score: score
       });
+    };
+
+    this.getScore = function(teacherId) {
+      return $http.get('/ratings/score-by-teacher-id/' + teacherId);
     };
 
 }]);

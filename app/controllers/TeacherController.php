@@ -11,7 +11,11 @@ class TeacherController extends BaseController {
   public function getView($id)
   {
     $teacher = Teacher::find($id);
-    $teacher->score = $teacher->ratings()->avg('score');
+    $ratings = $teacher->ratings();
+
+    $teacher->score = $ratings->avg('score');
+    $teacher->ratings_count = $ratings->count();
+
     return $teacher;
   }
 

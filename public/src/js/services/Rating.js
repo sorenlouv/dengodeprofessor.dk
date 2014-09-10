@@ -14,4 +14,8 @@ dengodeprofessor.service('ratingService', [
       });
     };
 
+    this.getScore = function(teacherId) {
+      return $http.get('/ratings/score-by-teacher-id/' + teacherId);
+    };
+
 }]);
