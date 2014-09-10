@@ -8,6 +8,14 @@ class SchoolController extends BaseController {
     return $schools;
   }
 
+  public function getView($id)
+  {
+    $school = School::find($id);
+    $school->teachers = $school->teachers()->get();
+    return $school;
+  }
+
+
   public function getSearch($school_name)
   {
 

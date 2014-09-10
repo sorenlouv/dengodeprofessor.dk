@@ -2,10 +2,10 @@ dengodeprofessor.config(['$routeProvider', function ($routeProvider) {
   'use strict';
 
   $routeProvider.
-  when('/home', {
-    templateUrl: 'templates/home.html',
-    controller: 'home'
-  }).
+  // when('/home', {
+  //   templateUrl: 'templates/home.html',
+  //   controller: 'home'
+  // }).
   when('/login', {
     templateUrl: 'templates/login.html',
     controller: 'login'
@@ -36,6 +36,6 @@ dengodeprofessor.config(['$routeProvider', function ($routeProvider) {
   }).
 
   otherwise({
-    redirectTo: '/home'
+    redirectTo: '/schools/1'
   });
 }]);

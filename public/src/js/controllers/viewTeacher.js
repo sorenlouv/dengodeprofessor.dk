@@ -13,7 +13,6 @@ dengodeprofessor.controller('viewTeacher', [
 
     $scope.addRating = function(score) {
       ratingService.add(score, teacherId).success(function() {
-        window.alert('done');
       });
     };
 

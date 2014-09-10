@@ -1,5 +1,5 @@
 <h1>Skoler</h1>
 
 <div ng-repeat="school in schools">
- {{school.name}}
+ <a ng-href="/#/schools/{{school.id}}" ng-bind="school.name"></a>
 </div>

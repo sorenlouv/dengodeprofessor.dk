@@ -58,10 +58,10 @@ dengodeprofessor.config(['$routeProvider', function ($routeProvider) {
   'use strict';
 
   $routeProvider.
-  when('/home', {
-    templateUrl: 'templates/home.html',
-    controller: 'home'
-  }).
+  // when('/home', {
+  //   templateUrl: 'templates/home.html',
+  //   controller: 'home'
+  // }).
   when('/login', {
     templateUrl: 'templates/login.html',
     controller: 'login'
@@ -92,7 +92,7 @@ dengodeprofessor.config(['$routeProvider', function ($routeProvider) {
   }).
 
   otherwise({
-    redirectTo: '/home'
+    redirectTo: '/schools/1'
   });
 }]);
 
@@ -146,6 +146,20 @@ dengodeprofessor.controller('login', [
   };
 }]);
 
+dengodeprofessor.controller('viewSchool', [
+  '$scope',
+  '$routeParams',
+  'schoolService',
+  function($scope, $routeParams, schoolService){
+    'use strict';
+
+    var schoolId = $routeParams.schoolId;
+    schoolService.getOne(schoolId).success(function(school) {
+      $scope.school = school;
+    });
+
+}]);
+
 dengodeprofessor.controller('viewSchools', [
   '$scope',
   'schoolService',
@@ -173,7 +187,6 @@ dengodeprofessor.controller('viewTeacher', [
 
     $scope.addRating = function(score) {
       ratingService.add(score, teacherId).success(function() {
-        window.alert('done');
       });
     };
 
@@ -290,7 +303,7 @@ dengodeprofessor.service('schoolService', [
     };
 
     this.getOne = function(schoolId) {
-      return $http.get('/school/view/' + schoolId);
+      return $http.get('/schools/view/' + schoolId);
     };
 
     this.search = function(schoolName) {
