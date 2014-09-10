@@ -127,22 +127,22 @@ dengodeprofessor.controller('login', [
   '$scope',
   'facebookService',
   'userService',
-  function($scope, facebook, userService){
+  function($scope, facebookService, userService){
   'use strict';
 
-  facebook.loggedInReady.success(function() {
+  facebookService.loggedInReady.success(function() {
     $scope.isLoggedIn = true;
     userService.login().success(function(user) {
       console.log(user);
     });
   });
 
-  facebook.sdkReady.success(function() {
+  facebookService.sdkReady.success(function() {
     $scope.isSdkReady = true;
   });
 
   $scope.login = function() {
-    facebook.login('');
+    facebookService.login('');
   };
 }]);
 
@@ -177,7 +177,8 @@ dengodeprofessor.controller('viewTeacher', [
   '$routeParams',
   'teacherService',
   'ratingService',
-  function($scope, $routeParams, teacherService, ratingService){
+  'facebookService',
+  function($scope, $routeParams, teacherService, ratingService, facebookService){
     'use strict';
 
     var teacherId = $routeParams.teacherId;
@@ -191,18 +192,22 @@ dengodeprofessor.controller('viewTeacher', [
       });
     };
 
-    // Current user's score of teacher
-    ratingService.getScore(teacherId).success(function(score) {
-      $scope.score = score;
-    });
-
     $scope.maxScore = 10;
-    $scope.isReadonly = false;
+    $scope.isLoggedIn = false;
 
     $scope.hoveringOver = function(value) {
       $scope.overStar = value;
       $scope.percent = 100 * (value / $scope.maxScore);
     };
+
+    // Current user's score of teacher
+    facebookService.loggedInReady.success(function() {
+      $scope.isLoggedIn = true;
+
+      ratingService.getScore(teacherId).success(function(score) {
+        $scope.score = score;
+      });
+    });
 
 }]);
 

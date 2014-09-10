@@ -2,21 +2,21 @@ dengodeprofessor.controller('login', [
   '$scope',
   'facebookService',
   'userService',
-  function($scope, facebook, userService){
+  function($scope, facebookService, userService){
   'use strict';
 
-  facebook.loggedInReady.success(function() {
+  facebookService.loggedInReady.success(function() {
     $scope.isLoggedIn = true;
     userService.login().success(function(user) {
       console.log(user);
     });
   });
 
-  facebook.sdkReady.success(function() {
+  facebookService.sdkReady.success(function() {
     $scope.isSdkReady = true;
   });
 
   $scope.login = function() {
-    facebook.login('');
+    facebookService.login('');
   };
 }]);

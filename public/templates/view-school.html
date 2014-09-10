@@ -1,6 +1,6 @@
 <h1 ng-bind="school.name"></h1>
 
-<input type="search" ng-model="search.name" placeholder="Søg efter undervisere">
+<input class="form-control" type="search" ng-model="search.name" placeholder="Søg efter undervisere">
 <div ng-repeat="teacher in school.teachers | filter:search">
   <a ng-href="/#/teachers/{{teacher.id}}" ng-bind="teacher.name"></a>
 </div>

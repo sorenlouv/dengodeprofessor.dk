@@ -1,14 +1,14 @@
 <h1 ng-bind="teacher.name"></h1>
 
 
-<p>
+<p ng-hide="!isLoggedIn">
   Din bedømmelse:
   <rating
     style="outline: none;"
     ng-click="addRating(score)"
     ng-model="score"
     max="maxScore"
-    readonly="isReadonly"
+    readonly="!isLoggedIn"
     on-hover="hoveringOver(value)"
     on-leave="overStar = null">
   </rating>
@@ -22,6 +22,8 @@
       {{percent}}%
     </span>
 </p>
+
+<a href="/#/login" ng-show="!isLoggedIn">Login for at stemme</a>
 
 <p>Bedømmelse: {{teacher.score | number: 1}}/<span ng-bind="maxScore"></span> fra {{teacher.ratings_count}} brugere</p>
 
