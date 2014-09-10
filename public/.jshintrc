@@ -1,0 +1,11 @@
+{
+  "unused": false,
+  "quotmark": "single",
+  "debug": true,
+  "globals": {
+    "dengodeprofessor": true,
+    "console": true,
+    "angular": true,
+    "FB": true
+  }
+}
