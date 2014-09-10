@@ -7,10 +7,6 @@ dengodeprofessor.service('ratingService', [
       return $http.get('/ratings');
     };
 
-    this.getOne = function(teacherId) {
-      return $http.get('/rating/' + teacherId);
-    };
-
     this.add = function(score, teacherId) {
       return $http.post('/ratings/add', {
         teacher_id: teacherId,

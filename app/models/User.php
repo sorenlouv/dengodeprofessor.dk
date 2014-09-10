@@ -10,5 +10,9 @@ class User extends Eloquent implements UserInterface {
 	// Fields that can be updated
   protected $fillable = array('id');
 
+  public function ratings()
+  {
+       return $this->hasMany('Rating');
+  }
 
 }

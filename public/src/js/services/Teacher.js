@@ -8,7 +8,7 @@ dengodeprofessor.service('teacherService', [
     };
 
     this.getOne = function(teacherId) {
-      return $http.get('/teachers/' + teacherId);
+      return $http.get('/teachers/view/' + teacherId);
     };
 
     this.add = function(teacher) {

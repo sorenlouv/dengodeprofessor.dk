@@ -271,10 +271,6 @@ dengodeprofessor.service('ratingService', [
       return $http.get('/ratings');
     };
 
-    this.getOne = function(teacherId) {
-      return $http.get('/rating/' + teacherId);
-    };
-
     this.add = function(score, teacherId) {
       return $http.post('/ratings/add', {
         teacher_id: teacherId,
@@ -294,7 +290,7 @@ dengodeprofessor.service('schoolService', [
     };
 
     this.getOne = function(schoolId) {
-      return $http.get('/school/' + schoolId);
+      return $http.get('/school/view/' + schoolId);
     };
 
     this.search = function(schoolName) {
@@ -313,7 +309,7 @@ dengodeprofessor.service('teacherService', [
     };
 
     this.getOne = function(teacherId) {
-      return $http.get('/teachers/' + teacherId);
+      return $http.get('/teachers/view/' + teacherId);
     };
 
     this.add = function(teacher) {
