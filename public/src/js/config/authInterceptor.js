@@ -3,7 +3,9 @@ dengodeprofessor.config(['$httpProvider', function ($httpProvider) {
 
   var interceptor = [
     '$q',
-    function($q) {
+    'growl',
+    'facebookService',
+    function($q, growl, facebookService) {
 
       function success(response) {
         return response;
@@ -11,7 +13,7 @@ dengodeprofessor.config(['$httpProvider', function ($httpProvider) {
 
       function error(response) {
         if (response.status === 401) {
-          window.location = '/#/login';
+          growl.warning('<a href="/#/login">Log ind</a> for at gennemføre handlingen');
         }
         return $q.reject(response);
       }
