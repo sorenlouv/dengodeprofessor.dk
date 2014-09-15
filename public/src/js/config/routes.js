@@ -2,10 +2,6 @@ dengodeprofessor.config(['$routeProvider', function ($routeProvider) {
   'use strict';
 
   $routeProvider.
-  // when('/home', {
-  //   templateUrl: 'templates/home.html',
-  //   controller: 'home'
-  // }).
   when('/login', {
     templateUrl: 'templates/login.html',
     controller: 'login'
